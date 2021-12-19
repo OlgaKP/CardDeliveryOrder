@@ -1,27 +1,38 @@
 package ru.netology;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class CardDeliveryOrderTest {
 
+    String generateDate(int days) {
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+
+    String planningDate = generateDate(4);
+
     @Test
     void shouldSendSuccessfulData() {
         //Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Ижевск");
+        //$("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE); --
+        // очистить от значения поле ввода по умолчанию:
+        // выделить содержимое двойным кликом и послать нажатием Backspace
+
         //element.sendKeys(Keys.CONTROL+"a") - выделяет element
         // .sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE), "Your Value") - выделяет элемент,
         //      удаляет его, вставляет нужное значение
         $("[data-test-id='date'] input")
-                .sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE), "25.12.2021");
+                .sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE), planningDate);
         $("[data-test-id='name'] input").setValue("Ия Ли");
         $("[data-test-id='phone'] input").setValue("+78001112233");
         $("[data-test-id='agreement'] .checkbox__text").click();
@@ -29,9 +40,9 @@ public class CardDeliveryOrderTest {
         $("[data-test-id='notification'] .notification__title").shouldHave(Condition.text("Успешно!"),
                 Duration.ofSeconds(15));
         $("[data-test-id='notification'] .notification__content")
-                .shouldHave(Condition.text("Встреча успешно забронирована на 25.12.2021"));
+                .shouldHave(Condition.text("Встреча успешно забронирована на " + planningDate));
     }
-
+}
 //    @Test
 //    void shouldSendWithoutCity() {
 //        //Configuration.holdBrowserOpen = true;
@@ -111,4 +122,4 @@ public class CardDeliveryOrderTest {
 //        $("[data-test-id='city'].input_invalid .input__sub")
 //                .shouldHave(Condition.text("Поле обязательно для заполнения"));
 //    }
-}
+
