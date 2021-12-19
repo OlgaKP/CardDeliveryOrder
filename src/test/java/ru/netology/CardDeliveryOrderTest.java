@@ -14,7 +14,7 @@ public class CardDeliveryOrderTest {
 
     @Test
     void shouldSendSuccessfulData() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Ижевск");
         //element.sendKeys(Keys.CONTROL+"a") - выделяет element
@@ -34,7 +34,7 @@ public class CardDeliveryOrderTest {
 
     @Test
     void shouldSendWithoutCity() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         $("[data-test-id='date'] input")
                 .sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE), "25.12.2021");
@@ -48,7 +48,7 @@ public class CardDeliveryOrderTest {
 
     @Test
     void shouldSendWithoutDate() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Ижевск");
         $("[data-test-id='name'] input").setValue("Ия Ли");
@@ -63,7 +63,7 @@ public class CardDeliveryOrderTest {
 
     @Test
     void shouldSendWithoutName() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Ижевск");
         $("[data-test-id='date'] input")
@@ -77,7 +77,7 @@ public class CardDeliveryOrderTest {
 
     @Test
     void shouldSendWithoutPhone() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Ижевск");
         $("[data-test-id='date'] input")
@@ -91,7 +91,7 @@ public class CardDeliveryOrderTest {
 
     @Test
     void shouldSendWithoutCheckbox() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Ижевск");
         $("[data-test-id='date'] input")
@@ -105,7 +105,7 @@ public class CardDeliveryOrderTest {
 
     @Test
     void shouldSendNothing() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         $(".button").click();
         $("[data-test-id='city'].input_invalid .input__sub")
