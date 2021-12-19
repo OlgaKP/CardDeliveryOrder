@@ -24,7 +24,7 @@ public class CardDeliveryOrderTest {
                 .sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE), "25.12.2021");
         $("[data-test-id='name'] input").setValue("Ия Ли");
         $("[data-test-id='phone'] input").setValue("+78001112233");
-        $(".checkbox").click();
+        $("[data-test-id='agreement'] .checkbox__text").click();
         $(".button").click();
         $("[data-test-id='notification'] .notification__title").shouldHave(Condition.text("Успешно!"),
                 Duration.ofSeconds(15));
